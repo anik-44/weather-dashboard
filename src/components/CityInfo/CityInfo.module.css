@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    margin: 2rem 0;
+    justify-content: space-between;
+}
+
+.firstColContainer, .secondColContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.paraContainer {
+    margin-bottom: 0.1rem;
+}
+
+.para {
+    font-weight: 400;
+    color: white;
+    display: inline-block;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.IconSpan {
+    margin-right: 0.4rem;
+}
+
+.dateInfoPara {
+    font-family: "Open Sans", serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: white;
+}
+

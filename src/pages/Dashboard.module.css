@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    background-color: #5d9ce6;
+}
+
+.sidePanelContainer {
+    width: 25vw;
+    height: 100vh;
+}
+
+.forecastPanelContainer {
+    width: 75vw;
+    background-color: #e4f1ff;
+    height: 100vh;
+    z-index: 2;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    box-shadow: 10px 10px 10px #5d9ce6;
+}

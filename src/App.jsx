@@ -1,7 +1,9 @@
+import Dashboard from "./pages/Dashboard.jsx";
+
 function App() {
     return (
         <>
-            <h1>hello World</h1>
+            <Dashboard/>
         </>
     )
 }

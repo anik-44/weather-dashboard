@@ -1,0 +1,19 @@
+.container {
+    background: #e4f1ff;
+    margin: 5rem 0;
+    padding: 1rem;
+    width: 10rem;
+    border-radius: 10px;
+}
+
+.metricTitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.metricValue {
+    padding-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}

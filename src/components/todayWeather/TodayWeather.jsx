@@ -6,6 +6,7 @@ import WeatherMetrics from "../WeatherMetrics/WeatherMetrics.jsx";
 import Button from "../Button/Button.jsx";
 import {useSelector} from "react-redux";
 import {formatTodayWeatherData} from "../../utils/helper.js";
+import PropTypes from "prop-types";
 
 function TodayWeather({toggleSearchBox}) {
     const weatherState = useSelector(state => state.weather);

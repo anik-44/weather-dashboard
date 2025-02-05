@@ -15,7 +15,7 @@ export const formatTodayWeatherData = (data) => {
     const windSpeed = Number((data?.wind?.speed * 3.6).toFixed(1)) // convert to Km/h
     const pressure = data?.main?.pressure;
 
-    const resObj = {
+    return {
         cityName: cityName,
         countryCode,
         sunRise,
@@ -27,7 +27,6 @@ export const formatTodayWeatherData = (data) => {
         windSpeed,
         pressure,
     }
-    return resObj;
 
 }
 

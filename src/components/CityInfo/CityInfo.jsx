@@ -1,6 +1,6 @@
 import {PinLocation03Icon, SunriseIcon, SunsetIcon} from "hugeicons-react";
-import styles from "./CityInfo.module.css";
 import PropTypes from "prop-types";
+import styles from "./CityInfo.module.css";
 
 function CityInfo({cityName, countryCode, date, sunSet, sunRise}) {
     return (<div className={styles.container}>
@@ -39,10 +39,10 @@ function CityInfo({cityName, countryCode, date, sunSet, sunRise}) {
 
 export default CityInfo;
 
-// CityInfo.propTypes = {
-//     cityName: PropTypes.string.isRequired,
-//     countryCode: PropTypes.string.isRequired,
-//     sunRise: PropTypes.string.isRequired,
-//     sunSet: PropTypes.string.isRequired,
-//     date: PropTypes.string.isRequired,
-// };
+CityInfo.propTypes = {
+    cityName: PropTypes.string.isRequired,
+    countryCode: PropTypes.string.isRequired,
+    sunRise: PropTypes.string.isRequired,
+    sunSet: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+};

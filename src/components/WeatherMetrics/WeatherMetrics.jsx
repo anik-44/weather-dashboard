@@ -1,4 +1,3 @@
-import React from 'react';
 import MetricsCard from "../MetricCard/MetricsCard.jsx";
 import styles from "./WeatherMetrics.module.css";
 import PropTypes from "prop-types";

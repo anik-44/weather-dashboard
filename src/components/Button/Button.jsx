@@ -1,4 +1,5 @@
 import styles from "./Button.module.css";
+import PropTypes from "prop-types";
 
 
 const Button = ({variant = "primary", children, ...props}) => {
@@ -11,6 +12,8 @@ const Button = ({variant = "primary", children, ...props}) => {
 
 export default Button;
 
-// type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-//     variant?: "primary" | "secondary" | "danger";
-// };
+Button.propTypes = {
+    variant: PropTypes.string,
+    children: PropTypes.node,
+}
+

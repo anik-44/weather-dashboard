@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import {getWeatherData} from "../services/weatherApi.service.js";
+import {getWeatherData, getWeatherHourlyData} from "../services/weatherApi.service.js";
 
 
 export const useWeatherQuery = (city) => {
@@ -11,7 +11,18 @@ export const useWeatherQuery = (city) => {
     })
 }
 
+export const useForecastQuery = (city) => {
+    return useQuery({
+        queryKey: ['forecast', city, 'hourly'],
+        queryFn: () => getWeatherHourlyData(city),
+        refetchInterval: 30000,
+        enabled: !!city
+    })
+}
 
 
-
-
+// export const useFiveDayForecastQuery = (city) => {
+//     return useQuery({
+//         queryKey: ['forecast', city, 'daily'], queryFn: () => getFiveDayForecast(city), refetchInterval: 30000
+//     })
+// }

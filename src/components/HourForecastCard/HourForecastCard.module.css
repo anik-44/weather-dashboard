@@ -1,0 +1,25 @@
+.container {
+    background: #e4f1ff;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.metricTitle {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.metricValue {
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}

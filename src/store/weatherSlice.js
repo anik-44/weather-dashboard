@@ -4,6 +4,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
     city: localStorage.getItem("city") || "New Delhi",
     weatherData: null,
+    hourlyWeatherData: null,
     loading: false,
     error: null,
 }
@@ -19,6 +20,9 @@ const weatherSlice = createSlice({
         setWeatherData: (state, action) => {
             state.weatherData = action.payload;
         },
+        setHourlyWeatherData: (state, action) => {
+            state.hourlyWeatherData = action.payload;
+        },
         setLoading: (state, action) => {
             state.loading = action.payload;
         },
@@ -28,6 +32,6 @@ const weatherSlice = createSlice({
     }
 })
 
-export const {setCity, setWeatherData, setLoading, setError} = weatherSlice.actions;
+export const {setCity, setWeatherData, setLoading, setError, setHourlyWeatherData} = weatherSlice.actions;
 
 export default weatherSlice.reducer;

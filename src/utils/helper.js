@@ -30,15 +30,16 @@ export const formatTodayWeatherData = (data) => {
 
 }
 
-function formatTime(timestamp) {
+export function formatTime(timestamp, format12H = true, timeZone = undefined) {
     if (!timestamp) return "";
-    return new Date(timestamp * 1000).toLocaleTimeString("en-US", {
+    const time = new Date(timestamp * 1000).toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",
-        hour12: true,
+        hour12: format12H,
+        timeZone: timeZone,
     });
+    return time;
 }
-
 
 function formatDate(timestamp) {
     if (!timestamp) return "";
@@ -47,6 +48,4 @@ function formatDate(timestamp) {
         month: "long",
         day: "numeric",
     });
-
-
 }

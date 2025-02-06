@@ -13,7 +13,6 @@ function Search({onClose}) {
         dispatch(setCity(search));
         setSearch("")
         onClose()
-
     }
 
     return (

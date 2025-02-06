@@ -8,11 +8,14 @@ import {useForecastQuery, useWeatherQuery} from "../hooks/useWeatherQuery.js";
 import {useDispatch, useSelector} from "react-redux";
 import {setError, setFiveForecastData, setHourlyWeatherData, setWeatherData} from "../store/weatherSlice.js";
 import {formatFiveDayForecast, formatHourlyData} from "../utils/helper.js";
+import Error from "../components/Error/Error.jsx";
 
 function Dashboard() {
     const dispatch = useDispatch();
     const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
     const searchedCity = useSelector(state => state.weather.city);
+    const error = useSelector(state => state.weather.error);
+
 
     const {
         data: todayWeatherData, error: todayWeatherError, isError: isTodayWeatherError, isLoading: isTodayWeatherLoading
@@ -37,10 +40,20 @@ function Dashboard() {
 
     useEffect(() => {
         if (isForecastError) {
-            dispatch(setError(forecastError));
+            dispatch(setError({
+                name: forecastError.name, message: forecastError.message,
+            }));
+            setTimeout(() => {
+                dispatch(setError(null));
+            }, 5000)
         }
         if (isTodayWeatherError) {
-            dispatch(setError(todayWeatherError));
+            dispatch(setError({
+                name: todayWeatherError.name, message: todayWeatherError.message,
+            }));
+            setTimeout(() => {
+                dispatch(setError(null));
+            }, 5000)
         }
     }, [isTodayWeatherError, isForecastError, forecastError, todayWeatherError, dispatch]);
 
@@ -54,10 +67,22 @@ function Dashboard() {
         return (<h1>Loading...</h1>)
     }
 
+    function onClose() {
+        dispatch(setError(null));
+    }
+
+    function handleTryAgain() {
+        dispatch(setError(null));
+        setIsSearchBoxOpen(true);
+    }
+
+
     return (<>
+
         {isSearchBoxOpen && <Modal onClose={toggleSearchBox}>
             <Search onClose={toggleSearchBox}/>
         </Modal>}
+        {error && <Modal onClose={onClose}><Error tryAgain={handleTryAgain}/></Modal>}
         <div className={styles.container}>
             <div className={styles.sidePanelContainer}>
                 <TodayWeather toggleSearchBox={toggleSearchBox}/>

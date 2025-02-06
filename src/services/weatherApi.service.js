@@ -1,11 +1,7 @@
 import {apikey, apiUrl} from "../utils/constants.js";
 
-
-// TODO: Later Update using User pref
-const metrics = "metric"
-
 export const getWeatherData = async (city) => {
-    const response = await fetch(`${apiUrl}/weather?q=${city}&appid=${apikey}&units=${metrics}`);
+    const response = await fetch(`${apiUrl}/weather?q=${city}&appid=${apikey}`);
     if (!response.ok) {
         throw new Error("Failed to fetch weather data");
     }
@@ -14,7 +10,7 @@ export const getWeatherData = async (city) => {
 
 // forecast Req
 export const fetchForecast = async (city) => {
-    const response = await fetch(`${apiUrl}/forecast?q=${city}&units=${metrics}&appid=${apikey}`);
+    const response = await fetch(`${apiUrl}/forecast?q=${city}&appid=${apikey}`);
     if (!response.ok) {
         throw new Error("Failed to fetch weather data");
     }

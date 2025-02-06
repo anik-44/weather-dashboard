@@ -1,4 +1,4 @@
-export const formatTodayWeatherData = (data) => {
+export const formatTodayWeatherData = (data,tempUnit) => {
     if (!data) {
         return null;
     }
@@ -9,7 +9,7 @@ export const formatTodayWeatherData = (data) => {
     const sunSet = formatTime(data?.sys?.sunset);
     const date = formatDate(data?.dt)
     // TODO: Update Temp based on User Pref
-    const temp = Math.round(data?.main?.temp)
+    const temp = Math.round(convertTempMetrics(data?.main?.temp, tempUnit))
     const humidity = data?.main?.humidity
     const visibility = Number((data?.visibility / 1000).toFixed(1))
     const windSpeed = Number((data?.wind?.speed * 3.6).toFixed(1)) // convert to Km/h
@@ -87,3 +87,11 @@ const groupData = (data) => {
     return groupedData;
 }
 
+export const convertTempMetrics = (tempK, unit) => {
+    if (unit === "celsius") {
+        return Math.round(tempK - 273.15);
+    } else if (unit === "fahrenheit") {
+        return Math.round((tempK - 273.15) * 9 / 5 + 32)
+    }
+    return tempK;
+};

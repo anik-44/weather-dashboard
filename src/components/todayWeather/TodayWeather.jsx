@@ -4,13 +4,21 @@ import CityInfo from "../CityInfo/CityInfo.jsx";
 import TempMetrics from "../TempMetrics/TempMetrics.jsx";
 import WeatherMetrics from "../WeatherMetrics/WeatherMetrics.jsx";
 import Button from "../Button/Button.jsx";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {formatTodayWeatherData} from "../../utils/helper.js";
 import PropTypes from "prop-types";
+import {setTempUnit} from "../../store/userSlice.js";
 
 function TodayWeather({toggleSearchBox}) {
+    const dispatch = useDispatch();
     const weatherState = useSelector(state => state.weather);
-    const formatedData = formatTodayWeatherData(weatherState?.weatherData);
+    const tempUnit = useSelector(state => state.user.tempUnit);
+    const formatedData = formatTodayWeatherData(weatherState?.weatherData, tempUnit);
+
+    const toggleTempUnit = (unit) => {
+        dispatch(setTempUnit(unit));
+    }
+
     return (<>
         <div className={styles.container}>
             <nav className={styles.navBar}>
@@ -24,10 +32,18 @@ function TodayWeather({toggleSearchBox}) {
                 {/*toggle Temp Unit*/}
                 <div className={styles.toggleBtnContainer}>
                     <div className={styles.btn}>
-                        <Button>Celsius</Button>
+                        <Button
+                            onClick={() => {
+                                toggleTempUnit("celsius")
+                            }}
+                            variant={`${tempUnit.toLowerCase() === "celsius" ? "primary" : "secondary"}`}>Celsius</Button>
                     </div>
                     <div>
-                        <Button variant={"secondary"}>Fahrenheit</Button>
+                        <Button
+                            onClick={() => {
+                                toggleTempUnit("fahrenheit")
+                            }}
+                            variant={`${tempUnit.toLowerCase() === "fahrenheit" ? "primary" : "secondary"}`}>Fahrenheit</Button>
                     </div>
                 </div>
 

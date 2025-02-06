@@ -1,13 +1,15 @@
 import styles from './FiveDayForecastCard.module.css'
-import {formatDate} from "../../utils/helper.js";
+import {convertTempMetrics, formatDate} from "../../utils/helper.js";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
 function FiveDayForecastCard(props) {
+    const tempUnit = useSelector((state) => state.user.tempUnit);
     const formatedDate = formatDate(props.dt);
     const day = formatedDate.toString().split(",")[0].trim();
     const date = formatedDate.toString().split(",")[1].trim();
-    const maxTemp = Math.round(props.maxTemp)
-    const minTemp = Math.round(props.minTemp)
+    const maxTemp = Math.round(convertTempMetrics(props.maxTemp, tempUnit))
+    const minTemp = Math.round(convertTempMetrics(props.minTemp, tempUnit))
     const weather = props.weather
     const humidity = props.humidity
     const wind = Number((props.wind * 3.6).toFixed(1))

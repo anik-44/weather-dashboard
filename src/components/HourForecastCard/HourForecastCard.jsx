@@ -1,11 +1,12 @@
 import styles from './HourForecastCard.module.css';
-import {formatTime} from "../../utils/helper.js";
+import {convertTempMetrics, formatTime} from "../../utils/helper.js";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
 function HourForecastCard(props) {
     const time = formatTime(props.dt, false, "UTC")
-    // TODO:
-    const temp = Math.round(props.main.temp)
+    const tempUnit = useSelector(state => state.user.tempUnit)
+    const temp = Math.round(convertTempMetrics(props.main.temp, tempUnit))
     const weather = props.weather[0].main
     return (
         <>

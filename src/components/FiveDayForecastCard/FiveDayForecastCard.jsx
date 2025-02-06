@@ -18,8 +18,8 @@ function FiveDayForecastCard(props) {
         <div className="">
             <p className={styles.cardHeader}>{day}</p>
             <p className={styles.lightText}>{date}</p>
-            <p className={styles.tempMetrics}>{maxTemp}&#176;C</p>
-            <p className={styles.lightText}>{minTemp}&#176;C</p>
+            <p className={styles.tempMetrics}>{maxTemp}&#176;{tempUnit === "celsius" ? "C" : "F"}</p>
+            <p className={styles.lightText}>{minTemp}&#176;{tempUnit === "celsius" ? "C" : "F"}</p>
             <p className={styles.weatherName}>{weather}</p>
         </div>
         <div className={styles.additionalInfoContainer}>

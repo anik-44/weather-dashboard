@@ -1,4 +1,4 @@
-export const formatTodayWeatherData = (data,tempUnit) => {
+export const formatTodayWeatherData = (data, tempUnit) => {
     if (!data) {
         return null;
     }
@@ -8,7 +8,6 @@ export const formatTodayWeatherData = (data,tempUnit) => {
     const sunRise = formatTime(data?.sys?.sunrise);
     const sunSet = formatTime(data?.sys?.sunset);
     const date = formatDate(data?.dt)
-    // TODO: Update Temp based on User Pref
     const temp = Math.round(convertTempMetrics(data?.main?.temp, tempUnit))
     const humidity = data?.main?.humidity
     const visibility = Number((data?.visibility / 1000).toFixed(1))
@@ -50,7 +49,7 @@ export const formatHourlyData = (data) => {
     const currentForecastIndex = data.list.findIndex((item) => {
         const forecastTime = formatTime(item.dt, false, "UTC");
         const forecastHour = forecastTime.toString().split(":")[0]
-        return forecastHour >= currentHour;
+        return currentHour > 21 ? forecastHour === "00" : forecastHour >= currentHour;
     })
     return data?.list.slice(currentForecastIndex, currentForecastIndex + 6);
 }

@@ -15,16 +15,10 @@ function Dashboard() {
     const searchedCity = useSelector(state => state.weather.city);
 
     const {
-        data: todayWeatherData,
-        error: todayWeatherError,
-        isError: isTodayWeatherError,
-        isLoading: isTodayWeatherLoading
+        data: todayWeatherData, error: todayWeatherError, isError: isTodayWeatherError, isLoading: isTodayWeatherLoading
     } = useWeatherQuery(searchedCity);
     const {
-        data: forecastData,
-        error: forecastError,
-        isError: isForecastError,
-        isLoading: isForecastLoading
+        data: forecastData, error: forecastError, isError: isForecastError, isLoading: isForecastLoading
     } = useForecastQuery(searchedCity);
 
 
@@ -60,19 +54,19 @@ function Dashboard() {
         return (<h1>Loading...</h1>)
     }
 
-    return (
-        <>
-            {isSearchBoxOpen && <Modal onClose={toggleSearchBox}><Search/></Modal>}
-            <div className={styles.container}>
-                <div className={styles.sidePanelContainer}>
-                    <TodayWeather toggleSearchBox={toggleSearchBox}/>
-                </div>
-                <div className={styles.forecastPanelContainer}>
-                    <Forecast/>
-                </div>
+    return (<>
+        {isSearchBoxOpen && <Modal onClose={toggleSearchBox}>
+            <Search onClose={toggleSearchBox}/>
+        </Modal>}
+        <div className={styles.container}>
+            <div className={styles.sidePanelContainer}>
+                <TodayWeather toggleSearchBox={toggleSearchBox}/>
             </div>
-        </>
-    );
+            <div className={styles.forecastPanelContainer}>
+                <Forecast/>
+            </div>
+        </div>
+    </>);
 }
 
 export default Dashboard;

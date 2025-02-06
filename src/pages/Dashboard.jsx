@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setError, setFiveForecastData, setHourlyWeatherData, setWeatherData} from "../store/weatherSlice.js";
 import {formatFiveDayForecast, formatHourlyData} from "../utils/helper.js";
 import Error from "../components/Error/Error.jsx";
+import Shimmer from "../components/Shimmer/Shimmer.jsx";
 
 function Dashboard() {
     const dispatch = useDispatch();
@@ -64,7 +65,7 @@ function Dashboard() {
     }
 
     if (isForecastLoading || isTodayWeatherLoading) {
-        return (<h1>Loading...</h1>)
+        return (<Shimmer/>)
     }
 
     function onClose() {

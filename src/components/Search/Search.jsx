@@ -9,24 +9,30 @@ function Search({onClose}) {
     const dispatch = useDispatch();
     const [search, setSearch] = useState("");
 
-    function handleClick() {
+    function handleSearch() {
         dispatch(setCity(search));
         setSearch("")
         onClose()
     }
 
-    return (
-        <div className={styles.container}>
-            <div className={styles.headerContainer}>
-                <h3>Search for:</h3>
-            </div>
-            <div className={styles.inputContainer}>
-                <input className={styles.inputText} placeholder="City name..." value={search}
-                       onChange={(e) => setSearch(e.target.value)}/>
-                <Button variant={"primary"} onClick={() => handleClick()}>Search</Button>
-            </div>
+    return (<div className={styles.container}>
+        <div className={styles.headerContainer}>
+            <h3>Search for:</h3>
+        </div>
+        <div className={styles.inputContainer}>
+            <input className={styles.inputText} placeholder="City name..." value={search}
+                   onChange={(e) => setSearch(e.target.value)}
+                   onKeyUp={(e) => {
+                       if (e.key === "Enter") {
+                           handleSearch();
+                       }
+                   }}
 
-        </div>);
+            />
+            <Button variant={"primary"} onClick={() => handleSearch()}>Search</Button>
+        </div>
+
+    </div>);
 }
 
 export default Search;

@@ -11,7 +11,7 @@ function WeatherMetrics({humidity, visibility, windSpeed, pressure}) {
             </div>
             <div>
                 <MetricsCard title={"Visibility"} data={visibility} unit={"Km"} />
-                <MetricsCard title={"Wind Speed"} data={windSpeed} unit={"Km/H"} />
+                <MetricsCard title={"Wind Speed"} data={windSpeed} unit={"Km/h"} />
             </div>
 
 

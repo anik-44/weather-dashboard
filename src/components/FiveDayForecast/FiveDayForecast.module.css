@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+}
+.titleContainer {
+    margin-left: 1.1rem;
+}
+
+.headTitle {
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+}
+
+.cityName {
+    color: #6b7280;
+    padding-top: 0.3rem;
+    font-size: 1rem;
+}
+
+.fiveDayForecastCard {
+    display: flex;
+    padding: 1rem 0;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}

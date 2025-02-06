@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import TodayWeather from "../components/todayWeather/TodayWeather.jsx";
 import styles from "./Dashboard.module.css"
 import Forecast from "../components/Forecast/Forecast.jsx";
@@ -6,8 +6,8 @@ import Modal from "../components/Modal/Modal.jsx";
 import Search from "../components/Search/Search.jsx";
 import {useForecastQuery, useWeatherQuery} from "../hooks/useWeatherQuery.js";
 import {useDispatch, useSelector} from "react-redux";
-import {setError, setHourlyWeatherData, setWeatherData} from "../store/weatherSlice.js";
-import error from "eslint-plugin-react/lib/util/error.js";
+import {setError, setFiveForecastData, setHourlyWeatherData, setWeatherData} from "../store/weatherSlice.js";
+import {formatFiveDayForecast, formatHourlyData} from "../utils/helper.js";
 
 function Dashboard() {
     const dispatch = useDispatch();
@@ -21,28 +21,34 @@ function Dashboard() {
         isLoading: isTodayWeatherLoading
     } = useWeatherQuery(searchedCity);
     const {
-        data: hourlyWeatherData,
-        error: hourlyWeatherError,
-        isError: isHourlyWeatherError,
-        isLoading: isHourlyWeatherLoading
+        data: forecastData,
+        error: forecastError,
+        isError: isForecastError,
+        isLoading: isForecastLoading
     } = useForecastQuery(searchedCity);
 
 
     useEffect(() => {
         // Today
         dispatch(setWeatherData(todayWeatherData));
+
         // Hourly
+        const hourlyWeatherData = formatHourlyData(forecastData);
         dispatch(setHourlyWeatherData(hourlyWeatherData));
-    }, [todayWeatherData, hourlyWeatherData, dispatch])
+
+        // _Five Day Forecast
+        const fiveForecastData = formatFiveDayForecast(forecastData);
+        dispatch(setFiveForecastData(fiveForecastData));
+    }, [todayWeatherData, forecastData, dispatch])
 
     useEffect(() => {
-        if (isHourlyWeatherError) {
-            dispatch(setError(hourlyWeatherError));
+        if (isForecastError) {
+            dispatch(setError(forecastError));
         }
         if (isTodayWeatherError) {
             dispatch(setError(todayWeatherError));
         }
-    }, [isTodayWeatherError, isHourlyWeatherError, hourlyWeatherError, todayWeatherError, dispatch]);
+    }, [isTodayWeatherError, isForecastError, forecastError, todayWeatherError, dispatch]);
 
 
     // toggle Search box modal
@@ -50,7 +56,7 @@ function Dashboard() {
         setIsSearchBoxOpen(!isSearchBoxOpen);
     }
 
-    if (isHourlyWeatherLoading || isTodayWeatherLoading) {
+    if (isForecastLoading || isTodayWeatherLoading) {
         return (<h1>Loading...</h1>)
     }
 

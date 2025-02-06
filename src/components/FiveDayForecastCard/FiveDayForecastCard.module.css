@@ -1,0 +1,52 @@
+.container {
+    background: #e4f1ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    height: 18rem;
+    width: 15rem;
+}
+
+
+.cardHeader {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.lightText {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.tempMetrics {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.weatherName {
+    text-align: center;
+    margin-top: 0.8rem;
+}
+
+.additionalInfoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.additionalInfo {
+    color: #6b7280;
+    padding: 0.2rem 0;
+    width: 12rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.additionalInfoText {
+    color: black;
+}

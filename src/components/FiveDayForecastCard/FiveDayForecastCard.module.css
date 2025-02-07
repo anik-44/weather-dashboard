@@ -32,6 +32,12 @@
 .weatherName {
     text-align: center;
     margin-top: 0.8rem;
+    display: flex;
+}
+
+.icon {
+    padding-right: 0.2rem;
+    width: 2rem;
 }
 
 .additionalInfoContainer {

@@ -1,7 +1,9 @@
 .container {
     margin-top: 3rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .tempMetrics {
@@ -22,4 +24,22 @@
     font-weight: 300;
     color: white;
     font-size: 5rem;
+}
+
+.weatherContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.weather {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.icon {
+    padding-top: 0.6rem;
+    padding-right: 0.3rem;
+    width: 2rem;
 }

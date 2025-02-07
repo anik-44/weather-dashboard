@@ -2,6 +2,7 @@ import styles from './FiveDayForecastCard.module.css'
 import {convertTempMetrics, formatDate} from "../../utils/helper.js";
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux";
+import {iconUrl} from "../../utils/constants.js";
 
 function FiveDayForecastCard(props) {
     const tempUnit = useSelector((state) => state.user.tempUnit);
@@ -20,7 +21,11 @@ function FiveDayForecastCard(props) {
             <p className={styles.lightText}>{date}</p>
             <p className={styles.tempMetrics}>{maxTemp}&#176;{tempUnit === "celsius" ? "C" : "F"}</p>
             <p className={styles.lightText}>{minTemp}&#176;{tempUnit === "celsius" ? "C" : "F"}</p>
-            <p className={styles.weatherName}>{weather}</p>
+            <p className={styles.weatherName}>
+                <span>
+                    <img src={`${iconUrl}${props.icon}.png`} className={styles.icon} alt={'weather icon'}/>
+                </span>
+                { weather}</p>
         </div>
         <div className={styles.additionalInfoContainer}>
             <div className={styles.additionalInfo}>
@@ -46,4 +51,5 @@ FiveDayForecastCard.propTypes = {
     weather: PropTypes.string.isRequired,
     humidity: PropTypes.number.isRequired,
     wind: PropTypes.number.isRequired,
+    icon: PropTypes.string.isRequired,
 };

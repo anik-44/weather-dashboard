@@ -13,9 +13,12 @@ export const formatTodayWeatherData = (data, tempUnit) => {
     const visibility = Number((data?.visibility / 1000).toFixed(1))
     const windSpeed = Number((data?.wind?.speed * 3.6).toFixed(1)) // convert to Km/h
     const pressure = data?.main?.pressure;
+    const icon = data?.weather[0].icon
+    const weather = data?.weather[0].main
 
     return {
         cityName: cityName, countryCode, sunRise, sunSet, date, temp, humidity, visibility, windSpeed, pressure,
+        icon, weather
     }
 
 }
@@ -43,13 +46,13 @@ export const formatHourlyData = (data) => {
     // UTC is not req for current Time
     const now = Date.now() / 1000;
     const currentTime = formatTime(now, false);
-    const currentHour = currentTime.toString().split(":")[0];
+    const currentHour = parseInt(currentTime.toString().split(":")[0]);
 
     // Find the closest forecast to the current time
     const currentForecastIndex = data.list.findIndex((item) => {
         const forecastTime = formatTime(item.dt, false, "UTC");
-        const forecastHour = forecastTime.toString().split(":")[0]
-        return currentHour > 21 ? forecastHour === "00" : forecastHour >= currentHour;
+        const forecastHour = parseInt(forecastTime.toString().split(":")[0]);
+        return currentHour > 21 ? forecastHour === 0 : forecastHour >= currentHour;
     })
     return data?.list.slice(currentForecastIndex, currentForecastIndex + 6);
 }
@@ -75,6 +78,7 @@ const groupData = (data) => {
                 humidity: item?.main?.humidity,
                 wind: item?.wind?.speed,
                 weather: item?.weather[0].main,
+                icon: item?.weather[0].icon,
             };
         }
         // Update max & min
